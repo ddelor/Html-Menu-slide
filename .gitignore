@@ -1,0 +1,9 @@
+.DS_Store
+
+/vendor
+/app/cache/*
+!/app/cache/.keep
+/web/css/*
+/web/js/*
+!/web/css/.keep
+!/web/js/.keep

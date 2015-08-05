@@ -1,0 +1,406 @@
+@import "compass/css3";
+
+
+/***************************************/
+/*                COLORS               */
+/***************************************/
+
+$light:         #fff;
+$dark:          #000;
+
+$grey-lighter:  #e5e5e5;
+$grey-light:    #cbcbcb;
+$grey:          #777777;
+$grey-dark:     #333333;
+$grey-darker:   #272727;
+
+$mcjp:          #ff0000;
+$dossier:       #b70909;
+$expo:          #76782f;
+$cinema:        #263963;
+$spectacle:     #82290d;
+$atelier:       #185c72;
+$conference:    #67124c;
+$cours:         #ac7a07;
+$partenaire:    #ffb023;
+
+
+/***************************************/
+/*         MEDIA QUERIES SIZES         */
+/***************************************/
+
+$max-xs :       767px; // Default
+$min-sm :       768px;
+$max-sm :       991px;
+$min-md :       992px;
+$max-md :       1199px;
+$min-l :        1200px;
+
+// @media (max-width: 429px) {}
+// @media (min-width: 430px) and (max-width: $max-xs) {}
+// @media (min-width: $min-sm) and (max-width: $max-md) {}
+// @media (min-width: $min-l) {}
+
+
+/***************************************/
+/*               GENERIC               */
+/***************************************/
+
+// FONTS
+body {
+    color: $dark;
+    font-family: "Source Sans Pro", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    strong { font-weight: 700; }
+    .jp {
+        font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+        font-weight: 400 !important;
+        &.bold { font-weight: 700 !important; }
+    }
+}
+
+.uppercase { text-transform: uppercase; }
+
+h1, h2, h3, h4, h5, h6 { margin: 0; line-height: normal; }
+
+a, a:hover, a:focus, a:link, a:visited, input:focus {
+    text-decoration: none;
+    outline: none;
+    color: $dark;
+}
+
+p { margin: 0; line-height: normal; }
+
+.mcjp { color: $mcjp; }
+.dossier { color: $dossier; }
+.expo { color: $expo; }
+.cinema { color: $cinema; }
+.spectacle { color: $spectacle; }
+.atelier { color: $atelier; }
+.conference { color: $conference; }
+.cours { color: $cours; }
+.partenaire { color: $partenaire; }
+
+// STRUCTURE
+html, body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+* { @include box-sizing(border-box); }
+ul { margin-bottom: 0; }
+.list-inline {
+    margin-left: 0;
+    li { padding: 0; }
+}
+.clear { clear: both; }
+.hidden { display: none; }
+.muted { opacity: 0.5; }
+
+// FORM : SELECTS
+div.fancy-select div.trigger {
+    width: 100%;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    color: $light;
+    background-color: $green;
+    &.open { background-color: $green; }
+    &.selected {
+        color: $light;
+        font-weight: 400;
+        font-style: normal;
+    }
+}
+
+div.fancy-select ul.options {
+    z-index: 500;
+    width: 100%;
+    height: auto;
+    max-height: initial;
+    overflow: hidden;
+    background-color: $green;
+    li {
+        font-family: "Source Sans Pro", sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        font-style: normal;
+        color: $light;
+        white-space: normal;
+        &.hover { background: rgba(255, 255, 255, 0.3); }
+        &.selected { background: transparent; }
+    }
+}
+
+// FORM : PLACEHOLDERS
+::-webkit-input-placeholder {
+    opacity: 1;
+    color: $light;
+    font-style: normal;
+    font-weight: 200;
+    font-family: "Source Sans Pro", sans-serif;
+
+}
+:-moz-placeholder { /* Firefox 18- */
+    opacity: 1;
+    color: $light;
+    font-style: normal;
+    font-weight: 200;
+    font-family: "Source Sans Pro", sans-serif;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+    opacity: 1;
+    color: $light;
+    font-style: normal;
+    font-weight: 200;
+    font-family: "Source Sans Pro", sans-serif;
+}
+:-ms-input-placeholder {
+    opacity: 1;
+    color: $light;
+    font-style: normal;
+    font-weight: 200;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+
+/***************************************/
+/*            GLOBAL CONTENT           */
+/***************************************/
+
+.global-content {
+    position: fixed;
+    top: 0px; bottom: 0px; left: 0px; right: 0px;
+    overflow-y: scroll;
+    transition: left ease-in-out .5s, right ease-in-out .5s;
+
+    &.out {
+        left: 365px;
+        right: -365px;
+    }
+}
+
+
+/***************************************/
+/*                MENU                 */
+/***************************************/
+
+nav.menu {
+    background-color: $grey-darker;
+    color: $light;
+    width: 365px;
+    position: fixed;
+    top: 0px; bottom: 0px; left: -365px;
+    overflow-y: scroll;
+    transition: left ease-in-out .5s;
+
+    &.open { left: 0px; }
+
+    .main {
+        padding: 20px 15px;
+        padding-right: 10px;
+        background-color: $grey-dark;
+
+        > li {
+            margin-bottom: 10px;
+            > ul { display: none; }
+        }
+
+        .booking {
+            display: inline-block;
+            vertical-align: middle;
+            height: 30px;
+            background-color: $mcjp;
+            color: $light;
+            font-size: 16px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            margin-right: 15px;
+            margin-left: 25px;
+        }
+
+        .lang {
+            display: inline-block;
+            vertical-align: middle;
+            width: 30px;
+            height: 25px;
+            border: 1px solid transparent;
+            &.jp { background: url(../assets/images/icon-lang-jap.png) no-repeat; }
+            &.fr { background: url(../assets/images/icon-lang-fr.png) no-repeat; }
+            &.selected { border: 1px solid $light; }
+        }
+
+        .first-entry {
+            display: inline-block;
+            font-size: 26px;
+            font-weight: 200;
+            text-transform: uppercase;
+            color: $light;
+            padding-left: 25px;
+            background: url(../assets/images/icons-first-entry.png) no-repeat;
+            background-position: 0px 0px;
+            &.open { background-position: 0px -33px; }
+            &.home { background: none; }
+
+        }
+
+        .second-entry {
+            display: inline-block;
+            font-size: 19px;
+            color: $light;
+            margin-left: 25px;
+            span.genre {
+                display: inline-block;
+                vertical-align: middle;
+                width: 10px;
+                height: 10px;
+                border-radius: 5px;
+                margin-right: 10px;
+                &.mcjp { background-color: $mcjp; }
+                &.dossier { background-color: $dossier; }
+                &.expo { background-color: $expo; }
+                &.cinema { background-color: $cinema; }
+                &.spectacle { background-color: $spectacle; }
+                &.atelier { background-color: $atelier; }
+                &.conference { background-color: $conference; }
+                &.cours { background-color: $cours; }
+                &.partenaire { background-color: $partenaire; }
+            }
+            &.see-all {
+                font-size: 13px;
+                font-weight: 600;
+                background-color: $dark;
+                padding: 3px 6px;
+                margin-top: 8px;
+            }
+        }
+
+        .search {
+            background-color: $grey;
+            input {
+                display: inline-block;
+                vertical-align: middle;
+                -webkit-appearance: none;
+                background-color: transparent;
+                border: 0px;
+                &[type=text] {
+                    width: 89%;
+                    font-size: 26px;
+                    font-weight: 200;
+                    text-transform: uppercase;
+                    color: $light;
+                    padding: 0 10px;
+                }
+                &[type=submit] {
+                    width: 10%;
+                    height: 33px;
+                    padding: 0;
+                    margin: 0;
+                    background: url(../assets/images/icon-loop.png) no-repeat 50%;
+                }
+            }
+        }
+    }
+
+    .social {
+        padding: 30px 30px 10px 30px;
+        li { margin-right: 10px; }
+        a {
+            display: block;
+            width: 55px;
+            height: 55px;
+            background: url(../assets/images/icons-social-menu.png) no-repeat;
+            &.fb { background-position: 0 0; }
+            &.twt { background-position: -55px 0; }
+            &.ins { background-position: -110px 0; }
+            &.news { background-position: -165px 0; }
+        }
+    }
+
+    .coords, .links {
+        padding: 25px 30px;
+        a { text-decoration: underline !important; }
+    }
+
+    .coords {
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 20px;
+        p:nth-child(1) { margin-bottom: 5px; }
+        .jp {
+            font-size: 20px;
+            font-weight: 600;
+            color: $light;
+        }
+        p, a { color: #b2b2b2; }
+    }
+
+    .links {
+        font-size: 15px;
+        font-weight: 300;
+        a { color: $light; }
+    }
+}
+
+
+/***************************************/
+/*                HEADER               */
+/***************************************/
+
+header {
+    position: relative;
+    height: 70px;
+
+    .toggle-menu {
+        display: inline-block;
+        position: absolute;
+        top: 50%; left: 23px;
+        margin-top: -15px;
+    }
+
+    .logo {
+        display: inline-block;
+        position: absolute;
+        top: 50%; left: 50%;
+        margin-top: -27px;
+        margin-left: -110px;
+        width: 220px;
+        height: 53px;
+    }
+
+    .booking {
+        display: inline-block;
+        position: absolute;
+        top: 50%; right: 0;
+        margin-top: -15px;
+        height: 30px;
+        color: $light;
+        background-color: $mcjp;
+        font-size: 16px;
+        text-transform: uppercase;
+        padding: 4px 10px;
+    }
+}
+
+@media (max-width: 429px) {
+
+    header {
+        .toggle-menu p { display: none; }
+        .logo {
+            margin-top: -21px;
+            margin-left: -75px;
+            width: 180px;
+            height: 43px;
+            background-size: cover;
+        }
+        .booking {
+            padding-left: 20px;
+            span { display: none; }
+        }
+    }
+}
+
+
+

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>
+    {% stylesheets
+        'css/normalize.css'
+        'libs/bootstrap.min.css'
+        'libs/fancybox/jquery.fancybox.css'
+        'libs/fancyselect.css'
+        'css/app.scss'
+        filter='scssphp,cssrewrite'
+    %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ path(asset_url) }}"/>
+    {% endstylesheets %}
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    {% javascripts
+        'libs/bootstrap.min.js'
+        'libs/fancybox/jquery.fancybox.js'
+        'libs/icheck.min.js'
+        'libs/fancyselect.min.js'
+        'js/app.js'
+    %}
+        <script type="text/javascript" src="{{ path(asset_url) }}"></script>
+    {% endjavascripts %}
+
+{% endblock %}
+
+{% block body %}
+
+    {% include '_menu.html.twig' %}
+
+    <div class="global-content">
+        {% include '_header.html.twig' %}
+        {% block content %}{% endblock %}
+    </div>
+
+{% endblock %}
